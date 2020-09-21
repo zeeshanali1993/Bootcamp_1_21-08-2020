@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Bootcamp_1_21-08-2020
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install nodejs
+        uses: actions/setup-node@v1.4.3
+        with:
+          node-version: 12.x
+        
+      - name: Running surge
+        run: npm install -g surge
+      
+      - name: Deploying page using serge
+        run: surge ./ bootcamp_1-21-08-2020.surge.sh --token ${{secrets.BOOTCAMP_1_21_08_2020_SURGE_SH}}
